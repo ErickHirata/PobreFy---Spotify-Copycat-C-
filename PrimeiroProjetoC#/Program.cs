@@ -1,8 +1,8 @@
 ﻿// Screen Sound / PobreFy - Nosso App De Musica
 
 // Registro das Variáveis do Projeto
-string mensagemDeBoasVindas = "Boas Vindas ao PobreFy - Nosso App de Música!";
-List<string> listaDasBandas = new List<string>();
+string mensagemDeBoasVindas = "Boas Vindas ao PobreFy - Nosso App de Música!\n ";
+List<string> listaDasBandas = new List<string>{"One Direction", "The Beatles", "Warriors From The Past", "Metalica", "Imagine Dragons"};
 
 // Logo
 void ExibirLogo()
@@ -40,7 +40,7 @@ void ExibirOpcoesDoMenu()
             RegistrarBandas();
             break;
         case 2:
-            Console.WriteLine("Você escolheu a opção " + opcaoEscolhidaNumerica);
+            MostrarBandasRegistradas();
             break;
         case 3:
             Console.WriteLine("Você escolheu a opção " + opcaoEscolhidaNumerica);
@@ -70,6 +70,22 @@ void RegistrarBandas()
     Console.WriteLine($"A Banda {nomeDaBanda} foi registrada com sucesso");
     Thread.Sleep(2000);
     Console.Clear();
+    ExibirOpcoesDoMenu();
+}
+
+void MostrarBandasRegistradas()
+{
+    Console.Clear();
+    ExibirLogo();
+
+    Console.WriteLine("\n # TODAS AS BANDAS REGISTRADAS: # ");
+    for (int i = 0; i < listaDasBandas.Count; i++)       //Enquanto tiver banda (maior q 0) ele vai contar e mostrar as bandas
+    {
+        Console.WriteLine($"Banda: {listaDasBandas[i]}");
+    }
+    Console.WriteLine("\n Digite qualquer tecla para sair da Lista de Bandas e voltar para o Menu Principal\n ");
+    Console.ReadKey();
+
     ExibirOpcoesDoMenu();
 }
 
