@@ -2,9 +2,10 @@
 
 // Registro das Variáveis do Projeto
 string mensagemDeBoasVindas = "Boas Vindas ao PobreFy - Nosso App de Música!";
+List<string> listaDasBandas = new List<string>();
 
-// Declaração de Função
-void ExibirMensagemDeBoasVindas()
+// Logo
+void ExibirLogo()
 {
     Console.WriteLine(@"
 ██████╗░░█████╗░██████╗░██████╗░███████╗███████╗██╗░░░██╗
@@ -18,6 +19,9 @@ void ExibirMensagemDeBoasVindas()
 
 void ExibirOpcoesDoMenu()
 {
+    Console.Clear();
+    ExibirLogo();
+
     Console.WriteLine("");
     Console.WriteLine("Digite 1 para registrar uma banda");
     Console.WriteLine("Digite 2 para mostrar todas as bandas");
@@ -26,13 +30,14 @@ void ExibirOpcoesDoMenu()
     Console.WriteLine("Digite 0 para sair");
 
     Console.Write("\n Digite sua opção: ");  //Write e não Consolie.WriteLine --> Para não pular linha
-    string opcaoEscolhida = Console.ReadLine()!;
-    int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida); //vai ler o input e pega so int
-    
+
+    string opcaoEscolhida = Console.ReadLine()!;            //vai ler o input e pega so int
+    int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida); 
+
     switch (opcaoEscolhidaNumerica)
     {
         case 1:
-            Console.WriteLine("Você escolheu a opção " + opcaoEscolhidaNumerica);
+            RegistrarBandas();
             break;
         case 2:
             Console.WriteLine("Você escolheu a opção " + opcaoEscolhidaNumerica);
@@ -53,6 +58,20 @@ void ExibirOpcoesDoMenu()
     }
 }
 
+void RegistrarBandas()
+{
+    Console.Clear(); //Limpa a tela do console
+    ExibirLogo();
+
+    Console.WriteLine("\n #REGISTRO DE BANDAS# ");
+    Console.WriteLine("Digite o nome da banda que deseja registrar: ");
+    string nomeDaBanda = Console.ReadLine()!;       //aqui ele le o INPUT do nomeDaBanda
+    listaDasBandas.Add(nomeDaBanda);                //Aqui ele registra a banda na lista de Banda
+    Console.WriteLine($"A Banda {nomeDaBanda} foi registrada com sucesso");
+    Thread.Sleep(2000);
+    Console.Clear();
+    ExibirOpcoesDoMenu();
+}
+
 //Chamando a Função pra mostrar msg
-ExibirMensagemDeBoasVindas();
 ExibirOpcoesDoMenu();
