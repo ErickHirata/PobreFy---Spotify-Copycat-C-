@@ -62,8 +62,8 @@ void RegistrarBandas()
 {
     Console.Clear(); //Limpa a tela do console
     ExibirLogo();
-
-    Console.WriteLine("\n #REGISTRO DE BANDAS# ");
+    ExibirTituloDaOpcaoMenu("#REGISTRO DE BANDAS#"); 
+    
     Console.WriteLine("Digite o nome da banda que deseja registrar: ");
     string nomeDaBanda = Console.ReadLine()!;       //aqui ele le o INPUT do nomeDaBanda
     listaDasBandas.Add(nomeDaBanda);                //Aqui ele registra a banda na lista de Banda
@@ -77,16 +77,30 @@ void MostrarBandasRegistradas()
 {
     Console.Clear();
     ExibirLogo();
+    ExibirTituloDaOpcaoMenu("#TODAS AS BANDAS REGISTRADAS:#"); 
 
-    Console.WriteLine("\n # TODAS AS BANDAS REGISTRADAS: # ");
-    for (int i = 0; i < listaDasBandas.Count; i++)       //Enquanto tiver banda (maior q 0) ele vai contar e mostrar as bandas
+    foreach (string banda in listaDasBandas)
+    {
+        Console.WriteLine($"Banda: {banda}");
+    }
+    /*for (int i = 0; i < listaDasBandas.Count; i++)       //Enquanto tiver banda (maior q 0) ele vai contar e mostrar as bandas
     {
         Console.WriteLine($"Banda: {listaDasBandas[i]}");
-    }
+    } */
+
     Console.WriteLine("\n Digite qualquer tecla para sair da Lista de Bandas e voltar para o Menu Principal\n ");
     Console.ReadKey();
 
     ExibirOpcoesDoMenu();
+}
+
+void ExibirTituloDaOpcaoMenu(string titulo)
+{
+    int Qt_Letras = titulo.Length;
+    string asteriscos = string.Empty.PadLeft(Qt_Letras, '═');
+    Console.WriteLine(asteriscos);
+    Console.WriteLine(titulo);
+    Console.WriteLine(asteriscos);
 }
 
 //Chamando a Função pra mostrar msg
