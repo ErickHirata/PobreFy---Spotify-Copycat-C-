@@ -2,7 +2,9 @@
 
 // Registro das Variáveis do Projeto
 string mensagemDeBoasVindas = "Boas Vindas ao PobreFy - Nosso App de Música!\n ";
-List<string> listaDasBandas = new List<string>{"One Direction", "The Beatles", "Warriors From The Past", "Metalica", "Imagine Dragons"};
+//List<string> listaDasBandas = new List<string>{"One Direction", "The Beatles", "Warriors From The Past", "Metalica", "Imagine Dragons"};
+
+Dictionary<string, List<int>> bandasRegistradas = new Dictionary<string, List<int>>
 
 // Logo
 void ExibirLogo()
