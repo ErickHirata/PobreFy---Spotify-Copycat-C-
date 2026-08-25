@@ -10,6 +10,7 @@ bandasRegistradas.Add("Warriors From The Past", new List<int> { 7, 8, 9 });
 bandasRegistradas.Add("Metalica", new List<int> { 10, 9, 10 });
 bandasRegistradas.Add("Imagine Dragons", new List<int> { 8, 9, 10 });
 bandasRegistradas.Add("Capitao Minhoca", new List<int> ());
+
 // Logo
 void ExibirLogo()
 {
@@ -49,10 +50,10 @@ void ExibirOpcoesDoMenu()
             MostrarBandasRegistradas();
             break;
         case 3:
-            Console.WriteLine("Você escolheu a opção " + opcaoEscolhidaNumerica);
+            AvaliarUmaBanda();
             break;
         case 4:
-            Console.WriteLine("Você escolheu a opção " + opcaoEscolhidaNumerica);
+            ExibirMediaDeUmaBanda();
             break;
         case 0:
             Console.WriteLine("Saindo do programa...");
@@ -100,6 +101,68 @@ void MostrarBandasRegistradas()
     ExibirOpcoesDoMenu();
 }
 
+void AvaliarUmaBanda()
+{
+    //Digital qual banda será avaliada
+    //Verificar se a banda existe no dicionário --> pra poder dar nota
+    // Se não volta pro Menu
+
+    Console.Clear();
+    ExibirLogo();
+    ExibirTituloDaOpcaoMenu("#AVALIAR BANDA!:#");
+    Console.Write("Digite o nome da banda que deseja avaliar: ");
+    string nomeDaBanda = Console.ReadLine()!;
+    if (bandasRegistradas.ContainsKey(nomeDaBanda))
+    {
+        Console.Write($"Qual a nota que a banda {nomeDaBanda} merece?: ");
+        int nota = int.Parse(Console.ReadLine()!);      // pega o que o user deu de nota e converte a string pra int
+        bandasRegistradas[nomeDaBanda].Add(nota);       // Pega a lista de notas associada à nomeDaBanda e adiciona a nova nota nela.
+        Console.WriteLine($"\nA nota {nota} foi registrada com Sucesso para a banda {nomeDaBanda}");
+        Thread.Sleep(2000);
+        Console.Clear();
+
+        //Console.WriteLine("Deseja Avaliar mais uma Banda?");
+
+        ExibirOpcoesDoMenu();
+    } 
+    else 
+    {
+        Console.Write($"\nA banda {nomeDaBanda} não foi Encontrada no cadastro e por isso não pode receber uma avaliação");
+        Console.WriteLine("\n Digite qualquer Tecla para Pesquisar outro nome pra avaliar outra banda");
+        Console.ReadKey();
+        Console.Clear();
+        AvaliarUmaBanda();
+    }
+
+}
+
+void ExibirMediaDeUmaBanda()
+{
+    Console.Clear();
+    ExibirLogo();
+    ExibirTituloDaOpcaoMenu("#Exibir Média Da Banda:#");
+
+    Console.Write("Digite o nome da banda que deseja ver a Média de Nota: ");
+    string nomeDaBanda = Console.ReadLine()!;
+    if (bandasRegistradas.ContainsKey(nomeDaBanda))
+    {
+        List<int> notasDaBanda = bandasRegistradas[nomeDaBanda];
+        Console.WriteLine($"A média da banda {nomeDaBanda} é {notasDaBanda.Average()}.");
+        Console.WriteLine("Digite qualquer tecla para voltar ao Menu Principal");
+        Console.ReadKey();
+        Console.Clear();
+        ExibirOpcoesDoMenu();
+    }
+    else
+    {
+        Console.Write($"\nA banda {nomeDaBanda} não foi Encontrada no cadastro e por isso não Há como mostrar a nota");
+        Console.WriteLine("\n Digite qualquer Tecla para Pesquisar outro nome pra consultar a nota da banda");
+        Console.ReadKey();
+        Console.Clear();
+        ExibirMediaDeUmaBanda();
+    }
+}
+
 void ExibirTituloDaOpcaoMenu(string titulo)
 {
     int Qt_Letras = titulo.Length;
@@ -108,6 +171,8 @@ void ExibirTituloDaOpcaoMenu(string titulo)
     Console.WriteLine(titulo);
     Console.WriteLine(asteriscos);
 }
+
+
 
 //Chamando a Função pra mostrar msg
 ExibirOpcoesDoMenu();
