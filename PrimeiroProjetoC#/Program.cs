@@ -2,10 +2,14 @@
 
 // Registro das Variáveis do Projeto
 string mensagemDeBoasVindas = "Boas Vindas ao PobreFy - Nosso App de Música!\n ";
-//List<string> listaDasBandas = new List<string>{"One Direction", "The Beatles", "Warriors From The Past", "Metalica", "Imagine Dragons"};
 
-Dictionary<string, List<int>> bandasRegistradas = new Dictionary<string, List<int>>
-
+Dictionary<string, List<int>> bandasRegistradas = new Dictionary<string, List<int>>(); 
+bandasRegistradas.Add("One Direction", new List<int> { 10, 8, 6 });
+bandasRegistradas.Add("The Beatles", new List<int> { 9, 10, 8 });
+bandasRegistradas.Add("Warriors From The Past", new List<int> { 7, 8, 9 });
+bandasRegistradas.Add("Metalica", new List<int> { 10, 9, 10 });
+bandasRegistradas.Add("Imagine Dragons", new List<int> { 8, 9, 10 });
+bandasRegistradas.Add("Capitao Minhoca", new List<int> ());
 // Logo
 void ExibirLogo()
 {
@@ -68,7 +72,7 @@ void RegistrarBandas()
     
     Console.WriteLine("Digite o nome da banda que deseja registrar: ");
     string nomeDaBanda = Console.ReadLine()!;       //aqui ele le o INPUT do nomeDaBanda
-    listaDasBandas.Add(nomeDaBanda);                //Aqui ele registra a banda na lista de Banda
+    bandasRegistradas.Add(nomeDaBanda, new List<int>());
     Console.WriteLine($"A Banda {nomeDaBanda} foi registrada com sucesso");
     Thread.Sleep(2000);
     Console.Clear();
@@ -81,7 +85,7 @@ void MostrarBandasRegistradas()
     ExibirLogo();
     ExibirTituloDaOpcaoMenu("#TODAS AS BANDAS REGISTRADAS:#"); 
 
-    foreach (string banda in listaDasBandas)
+    foreach (string banda in bandasRegistradas.Keys)    //Vai pegar as chaves de Nome de banda do Dicionario
     {
         Console.WriteLine($"Banda: {banda}");
     }
